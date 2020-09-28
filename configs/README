@@ -1,0 +1,3 @@
+关于testset.json，如下示例
+"bench4i":{"poc":"poc", "binary":"a.out", "args":"", "cmd":"%binary %input %args"}
+其中，"bench4i"是测试集名称，"poc"的value值是poc文件在目标程序目录下的相对路径，"binary"的value是目标程序二进制文件的相对路径，"args"的value是运行二进制文件所需的参数，"cmd"是运行二进制文件的命令格式

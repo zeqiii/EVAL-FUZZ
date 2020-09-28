@@ -1,0 +1,50 @@
+=================================================================
+==36062==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffe159788c0 at pc 0x0000004c1828 bp 0x7ffe15978850 sp 0x7ffe15978000
+WRITE of size 65535 at 0x7ffe159788c0 thread T0
+    #0 0x4c1827 in __asan_memcpy /tmp/final/llvm.src/projects/compiler-rt/lib/asan/asan_interceptors_memintrinsics.cc:23:3
+    #1 0x4f2c65 in bug (/home/ubuntu/workspace/testset/EBench-v1_trace/IS4_TS4_TV1__1/a.out+0x4f2c65)
+    #2 0x4f3cfd in main (/home/ubuntu/workspace/testset/EBench-v1_trace/IS4_TS4_TV1__1/a.out+0x4f3cfd)
+    #3 0x7f11d2c62b96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+    #4 0x41a7e9 in _start (/home/ubuntu/workspace/testset/EBench-v1_trace/IS4_TS4_TV1__1/a.out+0x41a7e9)
+
+Address 0x7ffe159788c0 is located in stack of thread T0 at offset 96 in frame
+    #0 0x4f2b4f in bug (/home/ubuntu/workspace/testset/EBench-v1_trace/IS4_TS4_TV1__1/a.out+0x4f2b4f)
+
+  This frame has 1 object(s):
+    [32, 96) 'dst' <== Memory access at offset 96 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow /tmp/final/llvm.src/projects/compiler-rt/lib/asan/asan_interceptors_memintrinsics.cc:23:3 in __asan_memcpy
+Shadow bytes around the buggy address:
+  0x100042b270c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b270d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b270e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b270f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b27100: 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1
+=>0x100042b27110: 00 00 00 00 00 00 00 00[f3]f3 f3 f3 00 00 00 00
+  0x100042b27120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b27130: 00 00 00 00 f1 f1 f1 f1 04 f2 00 00 00 00 00 00
+  0x100042b27140: 00 00 00 00 00 00 00 00 00 00 00 00 f3 f3 f3 f3
+  0x100042b27150: f3 f3 f3 f3 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100042b27160: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==36062==ABORTING

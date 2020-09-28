@@ -1,0 +1,4 @@
+{
+    "bench4i":{"seeds":"seeds", "poc":"poc", "binary":"a.out", "args":"", "cmd":"$binary $input $args"}, 
+    "lava1":{"seeds":"seeds", "poc":"CRASH_INPUT", "binary":"lava-install/bin/file", "args":"", "cmd":"$binary $input $args"}
+}
