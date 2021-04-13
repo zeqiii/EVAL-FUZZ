@@ -128,6 +128,7 @@ class Watcher:
                 # 从queue中取出crash文件
                 self.lock.acquire()
                 poc = self.event_queue.pop()
+                print("new crash file found: %s" %(poc))
                 self.lock.release()
                 # 以crash为输入生成crash backtrace
                 backtrace = os.path.join(Global.backtrace_dir, "backtrace")
