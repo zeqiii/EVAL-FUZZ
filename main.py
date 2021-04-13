@@ -5,6 +5,7 @@ from afl import *
 from qsym import *
 from angora import *
 from tortoise import *
+from fairfuzz import *
 
 def run(bucket_file, seed_dir, fuzzer_name, round_num):
     seed_dir = os.path.abspath(seed_dir)
@@ -19,6 +20,8 @@ def run(bucket_file, seed_dir, fuzzer_name, round_num):
         runner = Runner_angora(fuzzer_name, "", seed_dir, round_num)
     elif fuzzer_name == "tortoise":
         runner = Runner_tortoise(fuzzer_name, "", seed_dir, round_num)
+    elif fuzzer_name == "fairfuzz":
+        runner = Runner_fairfuzz(fuzzer_name, "", seed_dir, round_num)
     # read target projects from bucket
     with open(bucket_file) as f:
         lines = f.readlines()
