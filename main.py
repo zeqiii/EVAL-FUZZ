@@ -37,7 +37,7 @@ def run(bucket_file, seed_dir, fuzzer_name, round_num):
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:
-        print("Usage: python run.py [compile_script] [fuzzer_name] [testset_name] [targets_list] [timeout(hour)] [number of rounds]")
+        print("Usage: python main.py [compile_script] [fuzzer_name] [testset_name] [targets_list] [timeout(hour)] [number of rounds]")
         print("[fuzzer_name] can be: %s" %(str(Global.PATH.keys())))
         print("[testset_name] can be: %s" %(str(Global.testset_info.keys())))
         exit(0)
