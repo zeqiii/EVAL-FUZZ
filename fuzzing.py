@@ -248,7 +248,7 @@ class Runner():
         # 把seeds_source下的所有种子文件拷贝到self.seed_dir下
         os.system("rm -r %s" %(self.seed_dir))
         os.makedirs(self.seed_dir)
-        seeds_source = os.path.join(self.target_path, Global.testset_info[TESTSET]["seeds"]) + "/*"
+        seeds_source = os.path.join(self.target_path, Global.testset_info[Global.TESTSET]["seeds"]) + "/*"
         os.system("cp %s %s"%(seeds_source, self.seed_dir))
         # 编译
         self.compile()
