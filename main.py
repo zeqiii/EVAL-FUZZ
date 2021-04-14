@@ -70,3 +70,4 @@ if __name__ == "__main__":
     # 运行
     for round_num in range(1, Global.ROUNDS+1):
         run(targets_list_file, tmp_seed_dir, Global.FUZZER, round_num)
+    os.system("echo all_finished > finish_flag")
