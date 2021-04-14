@@ -257,13 +257,13 @@ class Runner():
         self.gen_groundtruth_backtrace()
         # 第n次独立重复实验的输出文件夹
         round_n_output = os.path.join(Global.output_dir, "%s_%s_round%s"%(self.fuzzer_name, Global.TESTSET, str(self.round_num)))
-        print(round_n_output)
         if not os.path.exists(round_n_output):
             os.makedirs(round_n_output)
         # 目标程序的模糊测试结果输出目录
         self.one_output_dir = os.path.join(round_n_output, "output_"+self.target_path.strip('/').split('/')[-1])
         self.finish = False
         self.start_fuzz()
+        print("%s started, watch on crash dir..." %(self.fuzzer_name))
         watcher = Watcher(self)
         while True:
             if os.path.exists(self.crash_dir):

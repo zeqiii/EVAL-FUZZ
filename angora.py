@@ -30,5 +30,5 @@ class Runner_angora(Runner):
         self.process.append(subprocess.Popen(cmd, shell=True))
 
     def start_fuzz(self, extra_args=[]):
-        crash_dir = os.path.join(one_output_dir, "crashes")
+        self.crash_dir = os.path.join(one_output_dir, "crashes")
         self.start_fuzz_angora(extra_args)

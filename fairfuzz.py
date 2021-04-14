@@ -18,5 +18,5 @@ class Runner_fairfuzz(Runner):
         self.process.append(subprocess.Popen(cmd, shell=True))
 
     def start_fuzz(self, extra_args=[]):
-        crash_dir = os.path.join(self.one_output_dir, "crashes")
+        self.crash_dir = os.path.join(self.one_output_dir, "crashes")
         self.start_fuzz_fairfuzz(extra_args)
