@@ -37,6 +37,14 @@ def run(bucket_file, seed_dir, fuzzer_name, round_num):
             print("sleep 10s after waiting...")
             time.sleep(10)
 
+    # bench4i能够记录代码触发时空分布数据
+    # 将/run/shm中的代码触发时空分布记录文件拷贝到输出文件夹中
+    if Global.TESTSET == "bench4i":
+        time_space_dir = os.path.join(self.round_n_output, "temporal_spatial_distribution")
+        if not os.path.exists(time_space_dir):
+            os.makedirs(time_space_dir)
+        cmd = "mv /run/shm/IS* %s" %(time_space_dir)
+        os.system(cmd)
 
 if __name__ == "__main__":
     if len(sys.argv) < 6:

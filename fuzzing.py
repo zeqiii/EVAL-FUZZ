@@ -174,6 +174,7 @@ class Runner():
         self.process = []    # 模糊测试进程列表
         self.keywords = []   # 模糊测试进程名关键词
         self.finish = False  # 模糊测试是否正常结束
+        self.round_n_output = "" # 一轮模糊测试的输出目录
         self.one_output_dir = "" # 模糊测试输出目录
         self.result_file = "" #记录结果数据的文件
 
@@ -256,16 +257,16 @@ class Runner():
         # 记录crash调用栈
         self.gen_groundtruth_backtrace()
         # 第n次独立重复实验的输出文件夹
-        round_n_output = os.path.join(Global.output_dir, "%s_%s_round%s"%(self.fuzzer_name, Global.TESTSET, str(self.round_num)))
-        if not os.path.exists(round_n_output):
-            os.makedirs(round_n_output)
+        self.round_n_output = os.path.join(Global.output_dir, "%s_%s_round%s"%(self.fuzzer_name, Global.TESTSET, str(self.round_num)))
+        if not os.path.exists(self.round_n_output):
+            os.makedirs(self.round_n_output)
         # 目标程序的模糊测试结果输出目录
-        self.one_output_dir = os.path.join(round_n_output, "output_"+self.target_path.strip('/').split('/')[-1])
+        self.one_output_dir = os.path.join(self.round_n_output, "output_"+self.target_path.strip('/').split('/')[-1])
         self.finish = False
         self.start_fuzz()
         print("%s started, watch on crash dir..." %(self.fuzzer_name))
         watcher = Watcher(self)
-        while True:
+        while True:    # 确保crash路径能够被正确地监控
             if os.path.exists(self.crash_dir):
                 watcher.watch(self.crash_dir)
                 watcher.process_queue(self.target_binary, Global.GROUND_TRUTH)
@@ -274,6 +275,6 @@ class Runner():
         self.wait()
         if not self.finish:
             watcher.abnormal_stop = True
-            os.system("rm -rf %s" %(one_output_dir))
+            os.system("rm -rf %s" %(self.one_output_dir))
             time.sleep(5)
         return self.finish
