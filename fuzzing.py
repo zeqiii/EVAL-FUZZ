@@ -153,7 +153,8 @@ class Watcher:
             self.fuzz_process.stop_fuzz()
         # 将发现的crash输入重命名为xxx_the-right-crash
         if same:
-            os.system("mv %s %s" %(self.the_right_crash_input, self.the_right_crash_input+"_the-right-crash"))
+            shutil.move(self.the_right_crash_input, self.the_right_crash_input+"_the-right-crash")
+            #os.system("mv %s %s" %(self.the_right_crash_input, self.the_right_crash_input+"_the-right-crash"))
 
     def process_queue(self, target_binary, ground_truth_backtrace):
         t = threading.Thread(target=self.__process_queue, args=(target_binary, ground_truth_backtrace))
