@@ -2,7 +2,6 @@
 import Global, os
 from fuzzing import *
 
-# 适用于afl, aflfast, mopt
 class Runner_fairfuzz(Runner):
     def __init__(self, fuzzer_name, target_path, seed_dir, round_num):
         Runner.__init__(self, fuzzer_name, target_path, seed_dir, round_num)

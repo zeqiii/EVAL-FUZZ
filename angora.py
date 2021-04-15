@@ -2,7 +2,6 @@
 import Global, os
 from fuzzing import *
 
-# 适用于qsym
 class Runner_angora(Runner):
     def __init__(self, fuzzer_name, target_path, seed_dir, round_num):
         Runner.__init__(self, fuzzer_name, target_path, seed_dir, round_num)
