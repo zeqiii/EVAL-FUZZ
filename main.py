@@ -47,6 +47,7 @@ def run(bucket_file, seed_dir, fuzzer_name, round_num):
         if not os.path.exists(time_space_dir):
             os.makedirs(time_space_dir)
         cmd = "mv /run/shm/IS* %s" %(time_space_dir)
+        print(cmd)
         os.system(cmd)
 
 if __name__ == "__main__":

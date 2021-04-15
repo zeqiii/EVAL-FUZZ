@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*- 
-import sys, os, threading, time, subprocess, json
+import sys, os, threading, time, subprocess, json, shutil
 import Global
 from multiprocessing import Process
 from watchdog.observers import Observer
@@ -128,11 +128,13 @@ class Watcher:
                 # 从queue中取出crash文件
                 self.lock.acquire()
                 poc = self.event_queue.pop()
+                new_poc = os.path.join(os.path.dirname(poc), "tmp_poc")    # 防止特殊字符导致命令行运行命令失败
+                shutil.copyfile(poc, new_poc)
                 print("new crash file found: %s" %(poc))
                 self.lock.release()
                 # 以crash为输入生成crash backtrace
                 backtrace = os.path.join(Global.backtrace_dir, "backtrace")
-                self.fuzz_process.gen_backtrace_asan(backtrace, target_binary, poc)
+                self.fuzz_process.gen_backtrace_asan(backtrace, target_binary, new_poc)
                 # 对比生成的backtrace与ground truth backtrace
                 same = compare_backtraces(backtrace, Global.GROUND_TRUTH)
                 if same:
