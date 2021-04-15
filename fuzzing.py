@@ -138,6 +138,7 @@ class Watcher:
                 # 对比生成的backtrace与ground truth backtrace
                 same = compare_backtraces(backtrace, Global.GROUND_TRUTH)
                 if same:
+                    print("||||backtrace same")
                     self.the_right_crash_input = poc
                     self.observer.stop()
                     break
@@ -280,4 +281,5 @@ class Runner():
             watcher.abnormal_stop = True
             os.system("rm -rf %s" %(self.one_output_dir))
             time.sleep(5)
+        print("finish........")
         return self.finish
