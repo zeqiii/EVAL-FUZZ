@@ -14,4 +14,6 @@ elif [ $mode == "FAIRFUZZ" ]; then
 	CC=/home/varas/workspace/afl-rb/afl-clang AFL_DONT_OPTIMIZE=1 AFL_USE_ASAN=1 make
 elif [ $mode == "HONGGFUZZ" ]; then
 	CC=/home/varas/workspace/honggfuzz/hfuzz_cc/hfuzz-clang make
+elif [ $mode == "SANITIZER" ]; then
+	clang -fsanitize=address *.c -o sanitizer_a.out
 fi

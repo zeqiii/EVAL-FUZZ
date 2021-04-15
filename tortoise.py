@@ -9,6 +9,7 @@ class Runner_tortoise(Runner):
 
     def compile(self):
         self.target_binary = self.do_compile(Global.SCRIPT, self.target_path, args="TORTOISE", binary_postfix=Global.BINARY_POSTFIX)
+        self.target_binary_sanitizer = self.target_binary
         
     def start_fuzz_tortoise(self, extra_args):
         self.finish = False

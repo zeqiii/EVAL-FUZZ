@@ -21,6 +21,7 @@ class Runner_qsym(Runner):
         target_path_orig = self.copy_for_qsym_original_mode()
         self.target_binary = self.do_compile(Global.SCRIPT, self.target_path, args="AFL", binary_postfix=Global.BINARY_POSTFIX)
         self.orig_binary = do_compile(Global.SCRIPT, target_path_orig, args="ORIG", binary_postfix=Global.BINARY_POSTFIX)
+        self.target_binary_sanitizer = self.target_binary
 
     def start_fuzz_qsym(self, extra_args):
         self.finish = False

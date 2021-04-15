@@ -162,6 +162,7 @@ class Runner():
         self.fuzzer_name = fuzzer_name      # fuzzer名称
         self.target_path = target_path # 目标程序的源码路径
         self.target_binary = None      # 目标程序的二进制文件路径
+        self.target_binary_sanitizer = None # 目标程序二进制文件路径（使用clang的sanitizer选项进行编译，用于验证漏洞触发的crash栈
         self.seed_dir = seed_dir       # 种子文件路径
         self.crash_dir = ""            # 模糊测试工具的crash目录
         self.round_num = round_num     # 模糊测试的独立重复实验次数
@@ -227,7 +228,7 @@ class Runner():
     
     # 有需要则重写该方法
     def gen_groundtruth_backtrace(self):
-        self.gen_backtrace_asan(Global.GROUND_TRUTH, self.target_binary, self.poc, args=self.run_args)
+        self.gen_backtrace_asan(Global.GROUND_TRUTH, self.target_binary_sanitizer, self.poc, args=self.run_args)
 
     # 重写该方法
     def start_fuzz(self):
@@ -269,7 +270,7 @@ class Runner():
         while True:    # 确保crash路径能够被正确地监控
             if os.path.exists(self.crash_dir):
                 watcher.watch(self.crash_dir)
-                watcher.process_queue(self.target_binary, Global.GROUND_TRUTH)
+                watcher.process_queue(self.target_binary_sanitizer, Global.GROUND_TRUTH)
                 break
             time.sleep(1)
         self.wait()

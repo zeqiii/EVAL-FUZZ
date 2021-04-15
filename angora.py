@@ -21,6 +21,7 @@ class Runner_angora(Runner):
         target_path_track = self.copy_for_angora_track_mode()
         self.target_binary = self.do_compile(Global.SCRIPT, self.target_path, args="FAST", binary_postfix=Global.BINARY_POSTFIX)
         self.track_binary = do_compile(Global.SCRIPT, target_path_orig, args="TAINT", binary_postfix=Global.BINARY_POSTFIX)
+        self.target_binary_sanitizer = self.target_binary
 
     def start_fuzz_angora(self, extra_args):
         self.finish = False

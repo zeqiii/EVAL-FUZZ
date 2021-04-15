@@ -10,6 +10,7 @@ class Runner_afl(Runner):
 
     def compile(self):
         self.target_binary = self.do_compile(Global.SCRIPT, self.target_path, args="AFL", binary_postfix=Global.BINARY_POSTFIX)
+        self.target_binary_sanitizer = self.target_binary
 
     def start_fuzz_afl(self, extra_args):
         self.finish = False
@@ -43,6 +44,3 @@ class Runner_afl(Runner):
             self.start_fuzz_aflfast(extra_args)
         elif self.fuzzer_name == "mopt":
             self.start_fuzz_mopt(extra_args)
-        
-
-
