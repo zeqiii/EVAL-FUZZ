@@ -247,6 +247,7 @@ class Runner():
         print("============kill fuzzer===============")
         for keyword in self.keywords:
             subprocess.Popen(["pkill", "-f", "%s"%(keyword)])
+            print("||||kill one process")
         self.finish = True
 
     # 开始运行一个模糊测试
