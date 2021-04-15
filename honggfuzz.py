@@ -12,7 +12,7 @@ class Runner_honggfuzz(Runner):
         
     def start_fuzz_honggfuzz(self, extra_args):
         self.finish = False
-        self.keywords.append("honggfuzz")
+        self.keywords.append("--crashdir")
         run_cmd = self.gen_run_cmd(target_binary=self.target_binary, input_file="___FILE___")
         cmd = "%s -i %s -W %s -o %s --crashdir %s -- %s 1>/dev/null 2>&1" %(Global.PATH[self.fuzzer_name], self.seed_dir, self.one_output_dir, self.one_output_dir, os.path.join(self.one_output_dir, "crashes") ,run_cmd)
         self.process.append(subprocess.Popen(cmd, shell=True))
