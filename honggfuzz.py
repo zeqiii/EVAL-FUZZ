@@ -17,6 +17,7 @@ class Runner_honggfuzz(Runner):
         os.makedirs(self.one_output_dir)  # 首先创建文件
         cmd = "%s -i %s -W %s -o %s --crashdir %s -l %s -- %s 1>/dev/null 2>&1" %(Global.PATH[self.fuzzer_name], self.seed_dir, self.one_output_dir, \
             self.one_output_dir, os.path.join(self.one_output_dir, "crashes"), os.path.join(self.one_output_dir, "log"), run_cmd)
+        print(cmd)
         self.process.append(subprocess.Popen(cmd, shell=True))
 
     def start_fuzz(self, extra_args=[]):
