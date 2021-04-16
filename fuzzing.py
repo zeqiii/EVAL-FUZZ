@@ -247,7 +247,7 @@ class Runner():
     def stop_fuzz(self):
         print("============kill fuzzer===============")
         for keyword in self.keywords:
-            subprocess.Popen(["pkill", "-f", "%s"%(keyword)])
+            subprocess.Popen(["pkill", "-f", "-15", "%s"%(keyword)])
             print("||||kill one process")
         self.finish = True
 
