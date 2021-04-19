@@ -12,7 +12,7 @@ class Runner_honggfuzz(Runner):
         
     def start_fuzz_honggfuzz(self, extra_args):
         self.finish = False
-        self.keywords.clear()  # 先清除内存
+        self.keywords = []  # 先清除内存
         self.keywords.append("crashdir")
         run_cmd = self.gen_run_cmd(target_binary=self.target_binary, input_file="___FILE___")
         os.makedirs(self.one_output_dir)  # 首先创建文件
