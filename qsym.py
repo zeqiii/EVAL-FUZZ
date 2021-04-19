@@ -25,6 +25,7 @@ class Runner_qsym(Runner):
 
     def start_fuzz_qsym(self, extra_args):
         self.finish = False
+        self.keywords.clear()  # 先清除内存
         self.keywords.append("afl-fuzz")
         self.keywords.append("run_qsym_afl.py")
         run_cmd1 = self.gen_run_cmd(target_binary=self.target_binary, input_file="@@")
